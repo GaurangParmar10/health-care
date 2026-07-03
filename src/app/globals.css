@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #0A3EBE;
+  --color-brand-blue-secondary: #0D47D9;
+  --color-brand-navy: #081E58;
+  --color-brand-yellow: #FFD400;
+  --color-brand-white: #F9FAFB;
+  --color-brand-gray: #E9EDF7;
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-editorial: 'Clash Display', 'Satoshi', 'General Sans', sans-serif;
+  
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 30s linear infinite;
+  --animate-heartbeat: heartbeat 1.5s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2s infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marquee-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.12); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.12); }
+    70% { transform: scale(1); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(1deg); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.6; box-shadow: 0 0 15px rgba(255, 212, 0, 0.4); }
+    50% { opacity: 1; box-shadow: 0 0 30px rgba(255, 212, 0, 0.8); }
+  }
+}
+
+/* Base Styles */
+:root {
+  --cursor-size: 8px;
+  background-color: #0A3EBE; /* Default to brand blue during transitions */
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background: #081E58;
+}
+
+body {
+  background-color: #F9FAFB;
+  color: #081E58;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #081E58;
+}
+::-webkit-scrollbar-thumb {
+  background: #0A3EBE;
+  border-radius: 5px;
+  border: 2px solid #081E58;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FFD400;
+}
+
+/* Noise & Grain Effect Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  content: "";
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 9999;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0%200%20200%20200'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter%20id='noise'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.65'%20numOctaves='3'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Custom cursor default hide on devices with touch */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, select, input, textarea, [role="button"] {
+    cursor: none;
+  }
+}
+
+/* Paper-like styling utilities */
+.paper-card {
+  background: #F9FAFB;
+  border: 1.5px solid #081E58;
+  box-shadow: 4px 4px 0px #081E58;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.paper-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #FFD400;
+  border-color: #0A3EBE;
+}
+
+/* Sticker label styling */
+.sticker {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px dashed #081E58;
+  border-radius: 9999px;
+  font-family: var(--font-editorial);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  background: #FFD400;
+  color: #081E58;
+  transform: rotate(-2deg);
+  box-shadow: 2px 2px 0px #081E58;
+}
+
+/* Dots Grid Background */
+.dots-grid {
+  background-image: radial-gradient(#081E58 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dots-grid-white {
+  background-image: radial-gradient(rgba(249, 250, 251, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Glass effect card styling */
+.glass-card {
+  background: rgba(249, 250, 251, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(249, 250, 251, 0.12);
+}
